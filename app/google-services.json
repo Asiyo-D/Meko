@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "135156930380",
+    "firebase_url": "https://meko-8e21e.firebaseio.com",
+    "project_id": "meko-8e21e",
+    "storage_bucket": "meko-8e21e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:135156930380:android:aa33752e6026d02b",
+        "android_client_info": {
+          "package_name": "com.loqoursys.meko"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "135156930380-vs96276hcb35lihinq73f4cau5n3nko3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.loqoursys.meko",
+            "certificate_hash": "72d15390b609d69f84fb0752008ae22fbebdf122"
+          }
+        },
+        {
+          "client_id": "135156930380-t841krn9st83ogt5uim0294fepoamgha.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcNyppsAbVt_X4-oSZbRSQfdeqx7MseNs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "135156930380-t841krn9st83ogt5uim0294fepoamgha.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

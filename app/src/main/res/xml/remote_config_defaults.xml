@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><!-- START xml_defaults -->
+<defaultsMap>
+    <entry>
+        <key>delivery_fee</key>
+        <value>10.0</value>
+    </entry>
+    <!--<entry>-->
+    <!--<key>welcome_message_caps</key>-->
+    <!--<value>false</value>-->
+    <!--</entry>-->
+    <!--<entry>-->
+    <!--<key>welcome_message</key>-->
+    <!--<value>Welcome to my awesome app!</value>-->
+    <!--</entry>-->
+</defaultsMap><!-- END xml_defaults -->

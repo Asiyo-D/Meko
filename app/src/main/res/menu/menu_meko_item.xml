@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.loqoursys.meko.MekoItemActivity">
+
+    <item
+        android:id="@+id/action_cart"
+        android:icon="@drawable/ic_shopping_cart_white_24dp"
+        android:orderInCategory="100"
+        android:title="@string/title_activity_cart"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_favorite"
+        android:icon="@drawable/ic_favorite_border_white_24dp"
+        android:orderInCategory="100"
+        android:title="@string/add_to_favorite"
+        app:showAsAction="ifRoom" />
+
+</menu>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.loqoursys.meko">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".MekoApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".SplashActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".SampleActivity"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".WelcomeActivity"
+            android:label="@string/title_activity_welcome"
+            android:theme="@style/TransparentStatus" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
+        <activity
+            android:name=".MainActivity"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".CartActivity"
+            android:label="@string/title_activity_cart"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/TransparentStatus">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.loqoursys.meko.MainActivity" />
+        </activity>
+        <activity
+            android:name=".MekoItemActivity"
+            android:label=""
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.loqoursys.meko.MainActivity" />
+        </activity>
+        <activity
+            android:name=".PaymentDeliveryActivity"
+            android:label="@string/title_activity_payment_delivery"
+            android:parentActivityName=".CartActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.loqoursys.meko.CartActivity" />
+        </activity>
+        <activity
+            android:name=".OrdersActivity"
+            android:label="@string/title_activity_orders"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme">
+
+            <!-- <meta-data -->
+            <!-- android:name="android.support.PARENT_ACTIVITY" -->
+            <!-- android:value="com.loqoursys.meko.MainActivity" /> -->
+        </activity>
+        <activity
+            android:name=".ReceiptActivity"
+            android:label="@string/title_activity_receipt"
+            android:parentActivityName=".OrdersActivity"
+            android:theme="@style/TransparentStatus">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.loqoursys.meko.PaymentDeliveryActivity" />
+        </activity>
+        <activity
+            android:name=".CookProfileActivity"
+            android:label="@string/title_activity_cook_profile"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".RatingActivity"
+            android:label="@string/title_activity_rating"
+            android:parentActivityName=".ReceiptActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.loqoursys.meko.ReceiptActivity" />
+        </activity>
+        <activity
+            android:name=".MapActivity"
+            android:parentActivityName=".PaymentDeliveryActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.loqoursys.meko.PaymentDeliveryActivity" />
+        </activity>
+
+        <service
+            android:name="utils.location.SearchLocation"
+            android:exported="false" />
+
+        <activity
+            android:name=".VerifyPhoneActivity"
+            android:label="@string/title_activity_verify_phone"
+            android:parentActivityName=".WelcomeActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.loqoursys.meko.WelcomeActivity" />
+        </activity>
+        <activity
+            android:name=".AccountSetupActivity"
+            android:label="@string/title_activity_account_setup"
+            android:parentActivityName=".VerifyPhoneActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.loqoursys.meko.VerifyPhoneActivity" />
+        </activity>
+        <activity
+            android:name=".OnboardingActivity"
+            android:theme="@style/TransparentStatus" />
+        <activity
+            android:name=".PaymentsActivity"
+            android:label="@string/title_activity_payments"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".OrderConfirmationActivity"
+            android:label="@string/title_activity_order_confirmation"
+            android:parentActivityName=".PaymentDeliveryActivity"
+            android:theme="@style/TransparentStatus">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.loqoursys.meko.PaymentDeliveryActivity" />
+        </activity>
+    </application>
+
+</manifest>

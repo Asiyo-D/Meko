@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/space_2x"
+    android:paddingBottom="@dimen/space_2x"
+    app:cardBackgroundColor="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginEnd="@dimen/space_2x"
+            android:layout_marginStart="@dimen/space_2x"
+            android:background="@color/divider_black"
+            android:visibility="invisible" />
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/space_2x">
+
+            <TextView
+                android:id="@+id/subtotal_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/subtotal"
+                app:layout_constraintLeft_toLeftOf="parent" />
+
+            <TextView
+                android:id="@+id/txt_subtotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kshs 1190 "
+                app:layout_constraintRight_toRightOf="parent" />
+
+
+            <TextView
+                android:id="@+id/delivery_fee_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_1x"
+                android:text="@string/delivery_fee"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/subtotal_title" />
+
+            <TextView
+                android:id="@+id/txt_delivery_fee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kshs 119"
+                app:layout_constraintBottom_toBottomOf="@id/delivery_fee_title"
+                app:layout_constraintRight_toRightOf="parent" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginEnd="@dimen/space_2x"
+            android:layout_marginStart="@dimen/space_2x"
+            android:background="@color/divider_black" />
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/space_2x">
+
+            <TextView
+                android:id="@+id/total_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_1x"
+                android:text="@string/total"
+                android:textColor="@android:color/black"
+                app:layout_constraintLeft_toLeftOf="parent" />
+
+            <TextView
+                android:id="@+id/txt_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kshs 2109"
+                android:textColor="@android:color/black"
+                app:layout_constraintBottom_toBottomOf="@id/total_title"
+                app:layout_constraintRight_toRightOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_2x"
+                android:gravity="center"
+                android:text="@string/order_help"
+                android:textSize="12sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_total" />
+        </android.support.constraint.ConstraintLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

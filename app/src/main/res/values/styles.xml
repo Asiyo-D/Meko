@@ -1,0 +1,54 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:fontFamily">@font/ubuntu</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="TransparentStatus" parent="AppTheme">
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="AppBarTitle" parent="@style/TextAppearance.AppCompat.Title">
+        <item name="android:fontFamily">@font/ubuntu</item>
+    </style>
+
+    <style name="TitleStyle" parent="Base.TextAppearance.AppCompat.Title">
+        <item name="android:fontFamily">@font/ubuntu</item>
+    </style>
+
+
+    <style name="SubTitleStyle" parent="Base.TextAppearance.AppCompat.Subhead">
+        <item name="android:fontFamily">@font/ubuntu</item>
+    </style>
+
+    <style name="TextNormal" parent="Base.TextAppearance.AppCompat.Body1">
+        <item name="android:fontFamily">@font/ubuntu</item>
+    </style>
+
+    <style name="Wel_TextContainer">
+        <item name="android:paddingTop">@dimen/space_2x</item>
+        <item name="android:paddingBottom">@dimen/space_2x</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="OptionsItemStyle">
+        <item name="android:textAppearance">?android:attr/textAppearanceListItemSmall</item>
+        <item name="android:fontFamily">@font/ubuntu</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+</resources>

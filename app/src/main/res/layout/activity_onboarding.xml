@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="false"
+    android:orientation="vertical"
+    tools:context="com.loqoursys.meko.OnboardingActivity">
+
+    <com.loqoursys.meko.ui.onboarding.WelcomeBackgroundView
+        android:id="@+id/welcome_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white" />
+
+    <LinearLayout
+        android:id="@+id/frame_onboard"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_weight="0"
+            android:elevation="4dp">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorBlackAlpha" />
+
+            <Button
+                android:id="@+id/btn_skip"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:background="?android:selectableItemBackground"
+                android:text="@string/skip" />
+
+            <com.gausio.symbol.ui.PagerIndicator
+                android:id="@+id/pager_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:indicatorSelectedSize="8dp"
+                app:indicatorSize="5dp"
+                app:paddingBetweenIndicators="@dimen/space_1x" />
+
+            <Button
+                android:id="@+id/btn_next"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:background="?android:selectableItemBackground"
+                android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
+                android:paddingEnd="@dimen/space_3x"
+                android:paddingStart="@dimen/space_3x"
+                android:text="@string/next" />
+        </FrameLayout>
+    </LinearLayout>
+
+</FrameLayout>

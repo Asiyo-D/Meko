@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:foreground="?android:selectableItemBackground"
+    android:minHeight="?android:listPreferredItemHeightLarge"
+    app:cardBackgroundColor="@android:color/white">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/order_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:selectableItemBackground"
+        android:padding="@dimen/space_2x">
+
+        <TextView
+            android:id="@+id/number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/order_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_2x"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="processing"
+            android:textAllCaps="true"
+            android:textColor="@android:color/black"
+            android:textSize="17sp"
+            app:layout_constraintStart_toEndOf="@id/number" />
+
+        <TextView
+            android:id="@+id/order_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="14/04/18"
+            app:layout_constraintBottom_toBottomOf="@id/order_status"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/order_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_2x"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="#LDAadsdsfsfsersdsd"
+            app:layout_constraintStart_toStartOf="@id/order_status"
+            app:layout_constraintTop_toBottomOf="@id/order_status" />
+
+
+        <TextView
+            android:id="@+id/items_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/servings_square"
+            android:gravity="center"
+            android:minWidth="25dp"
+            android:text="1"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/order_number"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="HardcodedText" />
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>

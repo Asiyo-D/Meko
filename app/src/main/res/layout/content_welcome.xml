@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:fitsSystemWindows="false"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.loqoursys.meko.WelcomeActivity"
+    tools:showIn="@layout/activity_welcome">
+
+    <FrameLayout
+        android:id="@+id/frame_welcome"
+        android:layout_width="match_parent"
+        android:layout_height="196dp">
+
+        <ImageView
+            android:id="@+id/img_welcome"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/welcome_image"
+            android:scaleType="centerCrop"
+            android:src="@drawable/plate" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/white_scrim" />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/wel_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_2x"
+        android:layout_marginTop="@dimen/space_2x"
+        android:text="@string/discover"
+        android:textColor="@android:color/black"
+        android:textSize="21sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/frame_welcome" />
+
+    <TextView
+        android:id="@+id/wel_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/space_2x"
+        android:layout_marginStart="@dimen/space_2x"
+        android:layout_marginTop="@dimen/space_2x"
+        android:text="@string/welcome_text"
+        android:textSize="17sp"
+        app:layout_constraintTop_toBottomOf="@id/wel_title" />
+
+    <ImageView
+        android:id="@+id/img_bubble"
+        android:layout_width="match_parent"
+        android:layout_height="196dp"
+        android:contentDescription="@string/welcome_image"
+        android:paddingTop="@dimen/space_8x"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bubble"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <Button
+        android:id="@+id/btn_start"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/space_4x"
+        android:paddingEnd="@dimen/space_3x"
+        android:paddingStart="@dimen/space_3x"
+        android:text="@string/get_started"
+        android:textAllCaps="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/wel_description" />
+</android.support.constraint.ConstraintLayout>

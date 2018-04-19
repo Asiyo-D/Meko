@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.loqoursys.meko.MapActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="128dp"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:titleTextAppearance="@style/AppBarTitle">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_2x"
+                android:text="@string/title_activity_map"
+                android:textColor="@android:color/white"
+                android:textSize="24sp" />
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_search"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_gravity="bottom"
+        android:visibility="invisible"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardElevation="3dp"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="bottom">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:background="?android:selectableItemBackgroundBorderless"
+                android:contentDescription="@string/back"
+                android:src="@drawable/ic_arrow_back_black_24dp" />
+
+            <EditText
+                android:id="@+id/txt_search"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/space_1x"
+                android:layout_marginStart="@dimen/space_1x"
+                android:layout_weight="1"
+                android:background="@android:color/white"
+                android:hint="@android:string/search_go"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:maxLines="1" />
+
+            <ImageButton
+                android:id="@+id/btn_clear"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_weight="0"
+                android:background="?android:selectableItemBackgroundBorderless"
+                android:contentDescription="@string/clear"
+                android:src="@drawable/ic_clear_black_24dp"
+                android:visibility="invisible" />
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <include layout="@layout/content_map" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        app:backgroundTint="@android:color/white"
+        app:fabSize="normal"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="bottom|end"
+        app:srcCompat="@drawable/ic_search_black_24dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_marginEnd="@dimen/space_3x"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/space_2x"
+        app:layout_anchor="@id/card_location"
+        app:layout_anchorGravity="top|end">
+
+        <ImageButton
+            android:id="@+id/btn_map_layers"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="@dimen/space_2x"
+            android:background="@drawable/white_circular_selector"
+            android:contentDescription="@string/location"
+            android:elevation="6dp"
+            android:src="@drawable/ic_layers_black_24dp"
+            app:layout_anchor="@id/btn_my_location"
+            app:layout_anchorGravity="bottom|end" />
+
+        <ImageButton
+            android:id="@+id/btn_my_location"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/white_circular_selector"
+            android:contentDescription="@string/location"
+            android:elevation="6dp"
+            android:src="@drawable/ic_my_location_black_24dp"
+            app:layout_anchor="@id/card_search"
+            app:layout_anchorGravity="bottom|end" />
+
+
+    </LinearLayout>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="3dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/space_2x"
+                android:text="@string/select_this_location" />
+
+            <LinearLayout
+                android:id="@+id/linear_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?android:selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/space_2x">
+
+                <TextView
+                    android:id="@+id/txt_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/space_2x"
+                    android:drawableStart="@drawable/ic_place_black_24dp"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:paddingEnd="@dimen/space_2x"
+                    android:paddingStart="@dimen/space_2x"
+                    android:text="@string/no_location_selected"
+                    android:textColor="@android:color/black" />
+
+                <ImageButton
+                    android:id="@+id/btn_fullscreen"
+                    android:layout_width="56dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="0"
+                    android:background="?android:selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/select_location"
+                    android:src="@drawable/ic_arrow_down_black_24dp"
+                    android:visibility="gone" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+</android.support.design.widget.CoordinatorLayout>
