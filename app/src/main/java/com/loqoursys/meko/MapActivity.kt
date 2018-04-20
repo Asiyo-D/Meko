@@ -37,10 +37,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
 import kotlinx.android.synthetic.main.activity_map.*
 import utils.*
 import utils.location.GetAddress
@@ -60,13 +57,14 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleApiClient.Con
 
     private lateinit var currentLocation: LatLng
     private lateinit var defaultLocation: LatLng
-    //    private lateinit var selectedLocation: LatLng
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var getAddress: GetAddress
 
     lateinit var context: Context
     private lateinit var handler: Handler
     private lateinit var dlgSearch: MaterialDialog
+
+    private lateinit var mCircle: Circle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -135,16 +133,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleApiClient.Con
             }
         }
         linear_location.setOnClickListener {
-            if (selectedLocation != null) {
-                val data = intent
-                        .putExtra("location name", selectedLocationName)
-                        .putExtra("location", selectedLocation)
-                this.setResult(android.app.Activity.RESULT_OK,data)
-//                setResult(Activity.RESULT_OK)
-                finish()
-            }
+            selectLocation()
         }
-        
+
         gpsStatusDetector = GpsStatusDetector(this)
         apiClient = GoogleApiClient.Builder(this)
                 .enableAutoManage(this, this)
@@ -155,7 +146,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleApiClient.Con
                 .build()
         apiClient.connect()
 
-        defaultLocation = LatLng(-34.0, 151.0)
+        defaultLocation = LatLng(-0.4167, 36.9476)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         getAddress = GetAddress(this)
         resultReceiver = LocationResultReceiver(handler)
@@ -359,7 +350,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleApiClient.Con
 
 //    GPS status
 
-    private fun gpsSnackBar(message: String, length: Int = Snackbar.LENGTH_LONG) {
+    private fun mapSnackBar(message: String, length: Int = Snackbar.LENGTH_LONG) {
         Snackbar.make(parent_view, message, length).show()
     }
 
@@ -378,7 +369,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleApiClient.Con
 
     override fun gpsStatus(_status: Boolean) {
         if (!_status) {
-            gpsSnackBar("Enable GPS to get your current location")
+            mapSnackBar("Enable GPS to get your current location")
             gpsStatusDetector?.checkGpsStatus()
         } else {
             getGpsLocation()
@@ -387,7 +378,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleApiClient.Con
 
     override fun gpsPermissionDenied(deviceGpsStatus: Int) {
         if (deviceGpsStatus == 1) {
-            gpsSnackBar("Enable GPS to get your current location")
+            mapSnackBar("Enable GPS to get your current location")
         } else {
             getGpsLocation()
         }
@@ -406,7 +397,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleApiClient.Con
     }
 
     override fun onGpsAlertCanceledByUser() {
-        gpsSnackBar("Enable location for improved accuracy")
+        mapSnackBar("Enable location for improved accuracy")
     }
 
 
@@ -416,6 +407,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleApiClient.Con
         mMap = googleMap
 
         if (mMap != null) {
+            initCircle(defaultLocation)
             mMap!!.setOnMapClickListener(this::onMapClickMarkerDrag)
             mMap!!.setOnMarkerDragListener(object : GoogleMap.OnMarkerDragListener {
                 override fun onMarkerDragEnd(marker: Marker?) {
@@ -452,7 +444,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleApiClient.Con
     }
 
     override fun onConnectionSuspended(p0: Int) {
-        gpsSnackBar("Connection  error. Check your Internet connection")
+        mapSnackBar("Connection  error. Check your Internet connection")
     }
 
     override fun onConnectionFailed(p0: ConnectionResult) {
@@ -471,12 +463,12 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleApiClient.Con
         if (checkGpsPermission()) {
             fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
                 if (location != null) {
-                    mMap?.moveCamera(CameraUpdateFactory.newLatLng(LatLng(location.latitude,
-                            location.longitude)))
+                    mMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(location.latitude,
+                            location.longitude), DEFAULT_ZOOM))
                 }
             }
         } else {
-            mMap?.moveCamera(CameraUpdateFactory.newLatLng(defaultLocation))
+            mMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(defaultLocation, DEFAULT_ZOOM))
         }
     }
 
@@ -486,13 +478,14 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleApiClient.Con
         }
 
         mMap?.clear()
-        val cameraUpdate = CameraUpdateFactory.newLatLng(latLng)
+        val cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, DEFAULT_ZOOM)
         mMap?.animateCamera(cameraUpdate)
         renderLocations(latLng)
         currentLocation = latLng
     }
 
     private fun updateLocationView(location: Location) {
+        logData(location.toString())
         val userLocation = getAddress.fetchCurrentAddress(location)
         val locationText = userLocation ?: getString(R.string.no_location_selected)
         txt_location.text = locationText
@@ -526,6 +519,14 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleApiClient.Con
         dialog.show()
     }
 
+    private fun initCircle(pos: LatLng) {
+        val circleOption = CircleOptions().center(pos)
+                .radius(DELIVERY_RADIUS).fillColor(Color.RED).visible(false)
+        if (mMap != null) {
+            mCircle = mMap!!.addCircle(circleOption)
+        }
+    }
+
 //    Search location
 
     private fun searchForLocation(locationName: String) {
@@ -553,7 +554,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleApiClient.Con
                         logData("$resultData")
                         showLocationOnMap(resultData)
                     } else {
-                        gpsSnackBar("An error occurred. Try searching for the location again")
+                        mapSnackBar("An error occurred. Try searching for the location again")
                     }
                 }
                 else -> {
@@ -561,7 +562,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleApiClient.Con
                     val errorMessage = resultData?.getString(SearchLocation.Constants.RESULT_DATA_KEY)
                             ?: "An error occurred. Check your internet connection and try again"
 
-                    gpsSnackBar(errorMessage, Snackbar.LENGTH_INDEFINITE)
+                    mapSnackBar(errorMessage, Snackbar.LENGTH_INDEFINITE)
                 }
             }
             dlgSearch.dismiss()
@@ -606,9 +607,36 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleApiClient.Con
         ime.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
+    private fun isMekoInLocation(location: Location): Boolean {
+        val distance = floatArrayOf(0f, 0f)
+        Location.distanceBetween(location.latitude, location.longitude,
+                mCircle.center.latitude, mCircle.center.longitude, distance)
+        return distance[0] <= mCircle.radius
+    }
+
+
+    private fun selectLocation() {
+        if (selectedLocation != null) {
+            if (isMekoInLocation(selectedLocation!!)) {
+                val data = intent
+                        .putExtra("location name", selectedLocationName)
+                        .putExtra("location", selectedLocation)
+                this.setResult(android.app.Activity.RESULT_OK, data)
+                finish()
+            } else {
+                mapSnackBar("We currently do not deliver to the selected location")
+            }
+        } else {
+            showToast(this, "Select location on map to add")
+        }
+    }
+
     companion object {
         const val ANIMATION_DURATION = 300L
         const val LOCATION_PERMISSION = 202
+        const val DEFAULT_ZOOM = 20F
+
+        const val DELIVERY_RADIUS = 5000.0
     }
 
 }

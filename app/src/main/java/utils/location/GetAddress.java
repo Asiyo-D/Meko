@@ -14,7 +14,7 @@ import java.util.Locale;
 
 public class GetAddress {
 
-    Activity activity;
+    private Activity activity;
 
     public GetAddress(Activity context) {
         this.activity = context;

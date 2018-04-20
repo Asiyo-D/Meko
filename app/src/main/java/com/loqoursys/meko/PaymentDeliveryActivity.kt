@@ -16,7 +16,7 @@ import utils.logData
 import utils.selectedLocation
 
 class PaymentDeliveryActivity : AppCompatActivity() {
-
+    var locationTitle = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment_delivery)
@@ -24,7 +24,15 @@ class PaymentDeliveryActivity : AppCompatActivity() {
 
         fab.setOnClickListener { view ->
             if (selectedLocation != null) {
-                startActivity(Intent(this, OrderConfirmationActivity::class.java))
+                val description = location_description.text.toString()
+                if (description.isNotEmpty()) {
+                    startActivity(Intent(this, OrderConfirmationActivity::class.java)
+                            .putExtra("location_des", description)
+                            .putExtra("location_title", locationTitle))
+                } else {
+                    Snackbar.make(view, "Please add a description of the delivery location",
+                            Snackbar.LENGTH_LONG).show()
+                }
             } else {
                 Snackbar.make(view, "Select your preferred delivery location",
                         Snackbar.LENGTH_LONG).show()
@@ -73,13 +81,14 @@ class PaymentDeliveryActivity : AppCompatActivity() {
     }
 
     private fun handleMapData(name: String, location: Location) {
-        val localName = if (name == getString(R.string.no_location_selected)) {
+        locationTitle = if (name == getString(R.string.no_location_selected)) {
             GetAddress(this).fetchCurrentAddress(location)
         } else {
             name
         }
 
-        txt_location.text = localName
+        txt_location.text = locationTitle
+        location_description.visibility = View.VISIBLE
     }
 
     companion object {

@@ -131,15 +131,28 @@
                     app:civ_fill_color="@color/divider_black" />
             </FrameLayout>
 
-            <TextView
+            <android.support.v7.widget.AppCompatRatingBar
                 android:id="@+id/cook_rating"
+                style="@style/Base.Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/space_2x"
+                android:numStars="5"
+                android:rating="4.5"
+                android:stepSize="0.5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/cook_chip" />
+
+            <TextView
+                android:id="@+id/rating_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/space_2x"
                 android:text="4.5"
                 app:layout_constraintBottom_toBottomOf="@id/cook_chip"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/cook_chip" />
+                app:layout_constraintEnd_toEndOf="@id/cook_rating"
+                app:layout_constraintStart_toStartOf="@id/cook_rating"
+                app:layout_constraintTop_toBottomOf="@id/cook_rating" />
         </android.support.constraint.ConstraintLayout>
 
 

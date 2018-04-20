@@ -24,6 +24,9 @@ class OrderConfirmationActivity : AppCompatActivity() {
     private lateinit var dialog: MaterialDialog
     private lateinit var adapter: CartAdapter
 
+    var locationTitle = ""
+    var locationDes = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_order_confirmation)
@@ -33,6 +36,9 @@ class OrderConfirmationActivity : AppCompatActivity() {
             checkConnection(view)
         }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        locationTitle = intent.getStringExtra("location_title")
+        locationDes = intent.getStringExtra("location_des")
 
         adapter = CartAdapter(this, mekoCart)
         val layoutManager = LinearLayoutManager(this)
@@ -107,7 +113,8 @@ class OrderConfirmationActivity : AppCompatActivity() {
         val total = subtotal + 10F percentOf subtotal
         if (selectedLocation != null) {
             val order = MekoOrder(receiptId, System.currentTimeMillis(), mekoCart,
-                    OrderLocation(selectedLocation!!.latitude, selectedLocation!!.longitude),
+                    OrderLocation(selectedLocation!!.latitude, selectedLocation!!.longitude,
+                            locationTitle, locationDes),
                     total, order_person = user)
 
             orderDBRef.child(receiptId).setValue(order)

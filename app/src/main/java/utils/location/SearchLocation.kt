@@ -35,7 +35,7 @@ class SearchLocation(private val name: String) : IntentService(name) {
         try {
             address = geocoder.getFromLocationName(locationName, 5)
         } catch (ioe: IOException) {
-            errorMessage = "Check your internet connection and try again"
+            errorMessage = "Could not get location. Reboot device and try again"
             deliverResults(Constants.FAILURE_RESULT, errorMessage)
             return
         } catch (iae: IllegalArgumentException) {
