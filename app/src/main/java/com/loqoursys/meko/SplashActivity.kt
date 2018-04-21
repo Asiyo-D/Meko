@@ -55,12 +55,12 @@ class SplashActivity : AppCompatActivity() {
 
         Preferences.loadPreferences(this)
         handler.postDelayed({
-            when {
-                mAuth.currentUser == null -> startActivity(Intent(this, WelcomeActivity::class.java))
-                Preferences.isNewUser() -> startActivity(Intent(this, AccountSetupActivity::class.java))
-                else -> startActivity(Intent(this, MainActivity::class.java))
-            }
-//            startActivity(Intent(this, MekoItemActivity::class.java))
+            //            when {
+//                mAuth.currentUser == null -> startActivity(Intent(this, WelcomeActivity::class.java))
+//                Preferences.isNewUser() -> startActivity(Intent(this, AccountSetupActivity::class.java))
+//                else -> startActivity(Intent(this, MainActivity::class.java))
+//            }
+            startActivity(Intent(this, RatingActivity::class.java))
             finish()
         }, SPLASH_DELAY)
     }

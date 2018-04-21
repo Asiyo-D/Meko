@@ -162,4 +162,6 @@
     <string name="favorites">Favorites</string>
     <string name="add_to_favorite">Add to favorite</string>
     <string name="location_description">Location description e.g. building, floor, door no.</string>
+    <string name="comments">Comments</string>
+    <string name="submit">Submit</string>
 </resources>

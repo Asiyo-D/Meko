@@ -13,6 +13,7 @@ import android.location.Address
 import android.location.Location
 import android.os.Environment
 import android.support.constraint.ConstraintLayout
+import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.ThemedSpinnerAdapter
@@ -466,6 +467,10 @@ var selectedLocation: Location? = null
 
 //Conversions
 fun String.toKshs(): String = "Kshs $this"
+
+fun View.snackBar(message: String, length: Int = Snackbar.LENGTH_SHORT) {
+    Snackbar.make(this, message, length).show()
+}
 
 fun getOrderTotal(orderItems: ArrayList<FoodItem>): Float {
     var total = 0f
