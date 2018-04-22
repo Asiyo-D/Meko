@@ -164,4 +164,7 @@
     <string name="location_description">Location description e.g. building, floor, door no.</string>
     <string name="comments">Comments</string>
     <string name="submit">Submit</string>
+    <string name="title_activity_locations">Locations</string>
+    <string name="location_not_added">No location added</string>
+    <string name="work">Work</string>
 </resources>

@@ -4,8 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import utils.*
@@ -44,10 +42,17 @@ class SplashActivity : AppCompatActivity() {
                 mRemoteConfig.activateFetched()
             }
             logData("Success ")
-
-            deliveryFee = mRemoteConfig.getDouble(FirebaseUtil.DELIVERY_FEE_KEY).toFloat()
-            logData("Fee $deliveryFee")
+            setDeliveryFee()
+        }.addOnFailureListener(this) {
+            logData("${it.message}")
+            setDeliveryFee()
         }
+    }
+
+
+    private fun setDeliveryFee() {
+        deliveryFee = mRemoteConfig.getDouble(FirebaseUtil.DELIVERY_FEE_KEY).toFloat()
+        logData("Fee $deliveryFee")
     }
 
     override fun onResume() {
@@ -55,12 +60,12 @@ class SplashActivity : AppCompatActivity() {
 
         Preferences.loadPreferences(this)
         handler.postDelayed({
-            //            when {
-//                mAuth.currentUser == null -> startActivity(Intent(this, WelcomeActivity::class.java))
-//                Preferences.isNewUser() -> startActivity(Intent(this, AccountSetupActivity::class.java))
-//                else -> startActivity(Intent(this, MainActivity::class.java))
-//            }
-            startActivity(Intent(this, RatingActivity::class.java))
+            when {
+                mAuth.currentUser == null -> startActivity(Intent(this, WelcomeActivity::class.java))
+                Preferences.isNewUser() -> startActivity(Intent(this, AccountSetupActivity::class.java))
+                else -> startActivity(Intent(this, MainActivity::class.java))
+            }
+//            startActivity(Intent(this, RatingActivity::class.java))
             finish()
         }, SPLASH_DELAY)
     }
@@ -71,4 +76,6 @@ class SplashActivity : AppCompatActivity() {
         const val SPLASH_DELAY = 4000L
 
     }
+
+
 }

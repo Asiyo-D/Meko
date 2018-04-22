@@ -29,11 +29,9 @@ class RatingActivity : AppCompatActivity() {
         btn_submit.setOnClickListener { view ->
             val comment = rating_comment.text.toString()
             when {
-                newRating <= 1f -> view.snackBar("Enter a rating of at least 1")
+                newRating < 1f -> view.snackBar("Enter a rating of at least 1")
                 comment.isEmpty() -> {
                     view.snackBar("Enter a comment to submit rating")
-//                    til_comment.isErrorEnabled = true
-                    til_comment.error = "Enter a comment"
                 }
                 else -> {
                     submitRating(view, comment)
@@ -44,7 +42,8 @@ class RatingActivity : AppCompatActivity() {
     }
 
     private fun submitRating(view: View, comment: String) {
-        view.snackBar(comment)
+        view.snackBar("$newRating rating submitted")
+
         btn_submit.isEnabled = false
     }
 

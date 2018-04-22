@@ -151,6 +151,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.loqoursys.meko.PaymentDeliveryActivity" />
         </activity>
+        <activity
+            android:name=".LocationsActivity"
+            android:label="@string/title_activity_locations"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
