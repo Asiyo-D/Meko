@@ -126,11 +126,8 @@ class OnboardingActivity : AppCompatActivity() {
 
     private fun finishSetup() {
         Preferences.setPreferenceInstall(false)
-
-        val intent = Intent(context, MainActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-
-        context.startActivity(intent)
+        startActivity(Intent(context, MainActivity::class.java))
+        finishAffinity()
     }
 
     inner class OnboardingAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {

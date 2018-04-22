@@ -105,12 +105,11 @@ class VerifyPhoneActivity : AppCompatActivity() {
                 Preferences.setPreferenceNumber(phoneNumber)
                 loginUser()
             } else {
+                verifyDlg.dismiss()
                 showToast(context, "Invalid verification code", Toast.LENGTH_LONG)
-//            reEnterCode()
             }
         })
 
-        verifyDlg.dismiss()
     }
 
     private fun requestAuthCode(number: String) {
@@ -122,9 +121,9 @@ class VerifyPhoneActivity : AppCompatActivity() {
     }
 
     private fun loginUser() {
-        val intent = Intent(context, AccountSetupActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-        context.startActivity(intent)
+        verifyDlg.dismiss()
+        startActivity(Intent(context, AccountSetupActivity::class.java))
+        finishAffinity()
     }
 
 }

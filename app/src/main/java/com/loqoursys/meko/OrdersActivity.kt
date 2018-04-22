@@ -111,13 +111,19 @@ class OrdersActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_home -> {
-                finish()
+                startActivity(Intent(this, MainActivity::class.java))
+                finishAffinity()
             }
             R.id.nav_orders -> {
+
+            }
+            R.id.nav_locations -> {
+                startActivity(Intent(this, LocationsActivity::class.java))
+                finishAffinity()
             }
             R.id.nav_payments -> {
                 startActivity(Intent(this, PaymentsActivity::class.java))
-                finish()
+                finishAffinity()
             }
             R.id.nav_settings -> {
 

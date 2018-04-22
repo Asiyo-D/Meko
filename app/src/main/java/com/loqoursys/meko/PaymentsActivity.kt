@@ -71,7 +71,7 @@ class PaymentsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
 
     override fun onResume() {
         super.onResume()
-        nav_view.menu.getItem(2).isChecked = true
+        nav_view.menu.getItem(3).isChecked = true
     }
 
     override fun onBackPressed() {
@@ -102,12 +102,16 @@ class PaymentsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_home -> {
-                finish()
+                startActivity(Intent(this, MainActivity::class.java))
+                finishAffinity()
             }
             R.id.nav_orders -> {
-                // Handle the camera action
                 startActivity(Intent(this, OrdersActivity::class.java))
-                finish()
+                finishAffinity()
+            }
+            R.id.nav_locations -> {
+                startActivity(Intent(this, LocationsActivity::class.java))
+                finishAffinity()
             }
             R.id.nav_payments -> {
 

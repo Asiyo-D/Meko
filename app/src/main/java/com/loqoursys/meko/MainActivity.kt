@@ -106,12 +106,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         when (item.itemId) {
+            R.id.nav_home -> {
+
+            }
             R.id.nav_orders -> {
-                // Handle the camera action
                 startActivity(Intent(this, OrdersActivity::class.java))
+                finishAffinity()
+            }
+            R.id.nav_locations -> {
+                startActivity(Intent(this, LocationsActivity::class.java))
+                finishAffinity()
             }
             R.id.nav_payments -> {
                 startActivity(Intent(this, PaymentsActivity::class.java))
+                finishAffinity()
             }
             R.id.nav_settings -> {
 

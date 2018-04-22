@@ -13,7 +13,7 @@
             android:icon="@drawable/ic_order_black_24dp"
             android:title="@string/orders" />
         <item
-            android:id="@+id/nav_delivery"
+            android:id="@+id/nav_locations"
             android:icon="@drawable/ic_pin_drop_black_24dp"
             android:title="@string/title_activity_locations" />
         <item
