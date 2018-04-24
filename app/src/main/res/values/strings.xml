@@ -167,4 +167,9 @@
     <string name="title_activity_locations">Locations</string>
     <string name="location_not_added">No location added</string>
     <string name="work">Work</string>
+    <string name="locations_text">Make your checkout process faster by adding a frequent location.</string>
+    <string name="add_a_promo_code">Add a promo code</string>
+    <string name="promotions">Promotions</string>
+    <string name="cash_on_delivery">Cash on delivery</string>
+    <string name="mpesa">mPesa</string>
 </resources>

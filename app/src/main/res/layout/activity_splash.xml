@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     tools:context="com.loqoursys.meko.SplashActivity">
 
     <ImageView
@@ -27,7 +28,7 @@
         android:textAllCaps="false"
         android:textAppearance="@style/TitleStyle"
         android:textColor="@color/textPrimary"
-        android:textSize="24sp"
+        android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

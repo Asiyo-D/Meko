@@ -14,7 +14,7 @@
         android:paddingBottom="@dimen/space_3x">
 
         <android.support.v7.widget.CardView
-            android:id="@+id/card_location"
+            android:id="@+id/card_home"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardBackgroundColor="@android:color/white"
@@ -32,10 +32,11 @@
                     android:layout_height="28dp"
                     android:layout_marginStart="@dimen/space_2x"
                     android:background="@drawable/circle_bg"
-                    android:backgroundTint="@color/colorYellow"
+                    android:backgroundTint="@color/colorBlue"
                     android:contentDescription="@string/title_home"
                     android:padding="4dp"
                     android:src="@drawable/ic_home_black_24dp"
+                    android:tint="@android:color/white"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -49,6 +50,18 @@
                     app:layout_constraintBottom_toBottomOf="@id/img_location"
                     app:layout_constraintStart_toEndOf="@id/img_location"
                     app:layout_constraintTop_toTopOf="@id/img_location" />
+
+
+                <ImageButton
+                    android:id="@+id/btn_home_done"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="@dimen/space_1x"
+                    android:background="?android:selectableItemBackgroundBorderless"
+                    android:contentDescription="@android:string/ok"
+                    android:src="@drawable/ic_done_black_24dp"
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -85,21 +98,23 @@
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
+            android:id="@+id/card_work"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/space_3x"
             android:layout_marginTop="@dimen/space_1x"
             android:padding="@dimen/space_2x"
             app:cardBackgroundColor="@android:color/white"
             app:cardCornerRadius="0dp"
-            app:layout_constraintTop_toBottomOf="@id/card_location">
+            app:layout_constraintTop_toBottomOf="@id/card_home">
 
             <android.support.constraint.ConstraintLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="@dimen/space_2x">
 
                 <ImageView
-                    android:id="@+id/img_payment"
+                    android:id="@+id/img_work"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
                     android:layout_marginStart="@dimen/space_2x"
@@ -119,16 +134,28 @@
                     android:layout_marginStart="@dimen/space_1x"
                     android:text="@string/work"
                     android:textSize="17sp"
-                    app:layout_constraintBottom_toBottomOf="@id/img_payment"
-                    app:layout_constraintStart_toEndOf="@id/img_payment"
-                    app:layout_constraintTop_toTopOf="@id/img_payment" />
+                    app:layout_constraintBottom_toBottomOf="@id/img_work"
+                    app:layout_constraintStart_toEndOf="@id/img_work"
+                    app:layout_constraintTop_toTopOf="@id/img_work" />
+
+
+                <ImageButton
+                    android:id="@+id/btn_work_done"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="@dimen/space_1x"
+                    android:background="?android:selectableItemBackgroundBorderless"
+                    android:contentDescription="@android:string/ok"
+                    android:src="@drawable/ic_done_black_24dp"
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:paddingBottom="@dimen/space_2x"
-                    app:layout_constraintTop_toBottomOf="@id/img_payment">
+                    app:layout_constraintTop_toBottomOf="@id/img_work">
 
                     <TextView
                         android:id="@+id/txt_location_work"
@@ -156,6 +183,20 @@
             </android.support.constraint.ConstraintLayout>
 
         </android.support.v7.widget.CardView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/space_2x"
+            android:layout_marginTop="@dimen/space_2x"
+            android:gravity="center"
+            android:paddingEnd="@dimen/space_3x"
+            android:paddingStart="@dimen/space_3x"
+            android:text="@string/locations_text"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_work" />
+
     </android.support.constraint.ConstraintLayout>
 
 

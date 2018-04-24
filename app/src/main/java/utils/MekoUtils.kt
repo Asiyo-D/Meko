@@ -257,6 +257,8 @@ class Preferences {
         private const val PREFERENCE_FRESH_INSTALL = "Install"
         private const val PREFERENCE_AVATAR_LOCATION = "User Avatar"
         private const val PREFERENCE_USER_NUMBER = "Number"
+        private const val PREFERENCE_HOME = "Home Location"
+        private const val PREFERENCE_WORK = "Work Location"
         private const val PREFERENCE_USER_NAME = "Name"
         //        private const val PREFERENCE_CRYPTO_TREND = "Crypto Trend"
 //        private const val PREFERENCE_CRYPTO_TREND_COMPLETE = "Crypto trend complete"
@@ -349,6 +351,24 @@ class Preferences {
             return sharedPreferences?.getString(PREFERENCE_USER_NAME, "New user")!!
         }
 
+
+        //        Saved locations
+        fun setPreferenceHome(isSet: Boolean) {
+            sharedPreferences?.edit()?.putBoolean(PREFERENCE_HOME, isSet)?.apply()
+        }
+
+        fun isHomeSet(): Boolean {
+            return sharedPreferences?.getBoolean(PREFERENCE_HOME, false)!!
+        }
+
+        fun setPreferenceWork(isSet: Boolean) {
+            sharedPreferences?.edit()?.putBoolean(PREFERENCE_WORK, isSet)?.apply()
+        }
+
+        fun isWorkSet(): Boolean {
+            return sharedPreferences?.getBoolean(PREFERENCE_WORK, false)!!
+        }
+
     }
 }
 
@@ -384,6 +404,7 @@ class FirebaseUtil {
         const val USERS_REF = "Meko users"
         const val ORDERS_REF = "Meko orders"
         const val DELIVERY_FEE_KEY = "delivery_fee"
+        const val SAVED_LOCATIONS = "Saved Locations"
     }
 }
 

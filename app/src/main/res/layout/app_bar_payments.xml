@@ -19,7 +19,7 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_orders" />
+    <include layout="@layout/content_payments" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

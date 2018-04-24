@@ -74,12 +74,15 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleApiClient.Con
         context = this
         handler = Handler()
 
+        val subtitle = intent.getStringExtra("subtitle")
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
         val drawable = ContextCompat.getDrawable(context, R.drawable.ic_clear_black_24dp)
         drawable?.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP)
 
         supportActionBar?.setHomeAsUpIndicator(drawable)
+        supportActionBar?.subtitle = subtitle
 
         fab.setOnClickListener {
             animateSearch()
