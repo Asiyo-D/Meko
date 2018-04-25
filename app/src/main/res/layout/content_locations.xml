@@ -51,7 +51,6 @@
                     app:layout_constraintStart_toEndOf="@id/img_location"
                     app:layout_constraintTop_toTopOf="@id/img_location" />
 
-
                 <ImageButton
                     android:id="@+id/btn_home_done"
                     android:layout_width="40dp"

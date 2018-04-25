@@ -12,7 +12,7 @@
         android:id="@+id/welcome_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white" />
+        android:background="@color/colorWhite" />
 
     <LinearLayout
         android:id="@+id/frame_onboard"
@@ -24,48 +24,56 @@
         <android.support.v4.view.ViewPager
             android:id="@+id/pager"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_weight="1" />
 
-        <FrameLayout
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="?android:attr/actionBarSize"
+            android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:elevation="4dp">
+            app:cardBackgroundColor="#1AFFFFFF">
 
-            <View
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorBlackAlpha" />
+                android:layout_height="?android:attr/actionBarSize"
+                android:elevation="4dp">
 
-            <Button
-                android:id="@+id/btn_skip"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="start"
-                android:background="?android:selectableItemBackground"
-                android:text="@string/skip" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorBlackAlpha"
+                    android:visibility="invisible" />
 
-            <com.gausio.symbol.ui.PagerIndicator
-                android:id="@+id/pager_indicator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                app:indicatorSelectedSize="8dp"
-                app:indicatorSize="5dp"
-                app:paddingBetweenIndicators="@dimen/space_1x" />
+                <Button
+                    android:id="@+id/btn_skip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="start"
+                    android:background="?android:selectableItemBackground"
+                    android:text="@string/skip" />
 
-            <Button
-                android:id="@+id/btn_next"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="end"
-                android:background="?android:selectableItemBackground"
-                android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
-                android:paddingEnd="@dimen/space_3x"
-                android:paddingStart="@dimen/space_3x"
-                android:text="@string/next" />
-        </FrameLayout>
+                <com.gausio.symbol.ui.PagerIndicator
+                    android:id="@+id/pager_indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:indicatorSelectedSize="8dp"
+                    app:indicatorSize="5dp"
+                    app:paddingBetweenIndicators="@dimen/space_1x" />
+
+                <Button
+                    android:id="@+id/btn_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="end"
+                    android:background="?android:selectableItemBackground"
+                    android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
+                    android:paddingEnd="@dimen/space_3x"
+                    android:paddingStart="@dimen/space_3x"
+                    android:text="@string/next" />
+            </FrameLayout>
+        </android.support.v7.widget.CardView>
+
     </LinearLayout>
 
 </FrameLayout>

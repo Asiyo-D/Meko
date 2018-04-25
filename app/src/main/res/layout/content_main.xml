@@ -4,31 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.loqoursys.meko.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-    <ImageView
-        android:id="@+id/img_code"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:background="@color/colorWhite" />
-
-    <EditText
-        android:id="@+id/txt_qr"
-        android:layout_width="match_parent"
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_3x"
-        android:hint="code"
-        app:layout_constraintTop_toBottomOf="@id/img_code" />
-
-    <Button
-        android:id="@+id/btn_qr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="gen"
+        android:layout_marginEnd="0dp"
+        android:layout_marginStart="0dp"
+        android:background="@color/colorWhite"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txt_qr" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/menu_meko" />
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/meko_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layoutAnimation="@anim/layout_anim_slide_from_bottom"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/navigation" />
 </android.support.constraint.ConstraintLayout>

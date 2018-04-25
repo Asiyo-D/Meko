@@ -1,7 +1,6 @@
 package com.loqoursys.meko
 
 import android.content.Intent
-import android.graphics.Bitmap
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
@@ -16,7 +15,6 @@ import com.google.firebase.database.ValueEventListener
 import com.loqoursys.meko.data.MekoUser
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-import kotlinx.android.synthetic.main.content_main.*
 import utils.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -28,7 +26,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         fab.setOnClickListener {
             startActivity(Intent(this, CartActivity::class.java))
-//            saveRec()
         }
 
         val toggle = ActionBarDrawerToggle(
@@ -37,15 +34,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
-
-        btn_qr.setOnClickListener {
-            val text = txt_qr.text.toString()
-            if (text.isEmpty()) {
-                incr()
-            } else {
-                generateCode(text)
-            }
-        }
 
         val uid = mAuth.currentUser!!.uid
         val txtName: TextView = nav_view.getHeaderView(0).findViewById(R.id.username)
@@ -131,21 +119,5 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
-    }
-
-    var bitmap: Bitmap? = null
-    private fun generateCode(text: String) {
-        bitmap = Receipts.generateReceipt(this, text)
-        img_code.setImageBitmap(bitmap)
-    }
-
-    private fun saveRec() {
-        if (bitmap != null) {
-            Receipts.saveReceipt(bitmap!!, "Sample")
-        }
-    }
-
-    private fun incr() {
-        fab.increase()
     }
 }
