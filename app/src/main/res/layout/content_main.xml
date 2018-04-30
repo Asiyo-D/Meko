@@ -24,7 +24,8 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/meko_recycler"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/divider_black"
         android:layoutAnimation="@anim/layout_anim_slide_from_bottom"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

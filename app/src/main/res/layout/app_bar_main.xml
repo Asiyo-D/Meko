@@ -9,35 +9,85 @@
     <android.support.design.widget.AppBarLayout
         style="@style/AppBarTitle"
         android:layout_width="match_parent"
-        android:layout_height="128dp"
+        android:layout_height="258dp"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:collapsedTitleTextAppearance="@style/AppBarTitle"
-            app:contentScrim="@color/colorPrimary"
+            app:contentScrim="@color/colorWhite"
             app:expandedTitleGravity="center_horizontal|bottom"
             app:expandedTitleTextAppearance="@style/AppBarTitle"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:title="@string/app_name"
-            app:titleEnabled="true">
+            app:titleEnabled="false">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/space_2x"
-                android:contentDescription="@string/meko"
-                android:src="@drawable/ic_restaurant_menu_black_24dp"
-                android:tint="@android:color/white" />
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="?android:attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:contentDescription="@string/meko"
+                android:scaleType="centerCrop"
+                android:src="@drawable/meko_food" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_gravity="bottom"
+                android:background="@drawable/scrim"
+                android:rotation="180" />
+
+            <TextView
+                android:id="@+id/meal_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="@dimen/space_2x"
+                android:layout_marginEnd="@dimen/space_2x"
+                android:layout_marginStart="@dimen/space_2x"
+                android:maxLines="1"
+                android:text="Have a fruitful day"
+                android:textColor="@color/colorWhite"
+                android:textSize="24sp" />
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/space_2x"
+                android:layout_marginStart="@dimen/space_2x"
+                android:layout_marginTop="@dimen/space_1x"
+                android:elevation="4dp"
+                app:cardBackgroundColor="@color/colorWhite"
+                app:cardCornerRadius="25dp"
+                app:cardElevation="4dp">
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/AppTheme.PopupOverlay">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:drawablePadding="@dimen/space_3x"
+                            android:drawableStart="@drawable/ic_restaurant_menu_black_24dp"
+                            android:gravity="center"
+                            android:text="@string/meko"
+                            android:textColor="#757575"
+                            android:textSize="17sp" />
+
+                    </FrameLayout>
+                </android.support.v7.widget.Toolbar>
+
+            </android.support.v7.widget.CardView>
 
         </android.support.design.widget.CollapsingToolbarLayout>
 

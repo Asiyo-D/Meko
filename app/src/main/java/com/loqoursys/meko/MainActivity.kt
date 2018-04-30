@@ -6,6 +6,7 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
@@ -13,8 +14,10 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.loqoursys.meko.data.MekoUser
+import com.loqoursys.meko.ui.MainAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.content_main.*
 import utils.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -35,30 +38,34 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         nav_view.setNavigationItemSelectedListener(this)
 
-        val uid = mAuth.currentUser!!.uid
-        val txtName: TextView = nav_view.getHeaderView(0).findViewById(R.id.username)
-        val txtNumber: TextView = nav_view.getHeaderView(0).findViewById(R.id.phone_number)
+//        val uid = mAuth.currentUser!!.uid
+//        val txtName: TextView = nav_view.getHeaderView(0).findViewById(R.id.username)
+//        val txtNumber: TextView = nav_view.getHeaderView(0).findViewById(R.id.phone_number)
+//
+//        val phoneNumber = mAuth.currentUser!!.phoneNumber!!
+//        val num = "${phoneNumber.subSequence(0, 4)} ${phoneNumber.subSequence(4, 7)}" +
+//                " ${phoneNumber.subSequence(7, phoneNumber.length)}"
+//        txtNumber.text = num
+//
+//        val userDBRef = mDatabase.getReference(FirebaseUtil.USERS_REF)
+//        userDBRef.child(uid).addValueEventListener(object : ValueEventListener {
+//            override fun onCancelled(p0: DatabaseError?) {}
+//            override fun onDataChange(snapshot: DataSnapshot?) {
+//                if (snapshot != null) {
+//                    val user = snapshot.getValue(MekoUser::class.java)
+//                    if (user != null) {
+//                        val name = user.full_name
+//
+//                        txtName.text = name
+//                    }
+//                }
+//            }
+//        })
+//
+//        showToast(this, "Fee $deliveryFee")
 
-        val phoneNumber = mAuth.currentUser!!.phoneNumber!!
-        val num = "${phoneNumber.subSequence(0, 4)} ${phoneNumber.subSequence(4, phoneNumber.length)}"
-        txtNumber.text = num
-
-        val userDBRef = mDatabase.getReference(FirebaseUtil.USERS_REF)
-        userDBRef.child(uid).addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(p0: DatabaseError?) {}
-            override fun onDataChange(snapshot: DataSnapshot?) {
-                if (snapshot != null) {
-                    val user = snapshot.getValue(MekoUser::class.java)
-                    if (user != null) {
-                        val name = user.full_name
-
-                        txtName.text = name
-                    }
-                }
-            }
-        })
-
-        showToast(this, "Fee $deliveryFee")
+        meko_recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true)
+        meko_recycler.adapter = MainAdapter(this, mekoFoods)
     }
 
     override fun onResume() {

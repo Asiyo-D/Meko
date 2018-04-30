@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import utils.*
+import java.util.*
 
 class SplashActivity : AppCompatActivity() {
 
@@ -61,13 +62,17 @@ class SplashActivity : AppCompatActivity() {
         super.onResume()
 
         Preferences.loadPreferences(this)
+
+        val hr = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+        getMealPhoto(this, hr)
+
         handler.postDelayed({
-            when {
-                mAuth.currentUser == null -> startActivity(Intent(this, WelcomeActivity::class.java))
-                Preferences.isNewUser() -> startActivity(Intent(this, AccountSetupActivity::class.java))
-                else -> startActivity(Intent(this, MainActivity::class.java))
-            }
-//            startActivity(Intent(this, RatingActivity::class.java))
+            //            when {
+//                mAuth.currentUser == null -> startActivity(Intent(this, WelcomeActivity::class.java))
+//                Preferences.isNewUser() -> startActivity(Intent(this, AccountSetupActivity::class.java))
+//                else -> startActivity(Intent(this, MainActivity::class.java))
+//            }
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }, SPLASH_DELAY)
     }

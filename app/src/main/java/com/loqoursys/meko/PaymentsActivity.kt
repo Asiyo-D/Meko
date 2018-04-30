@@ -45,7 +45,8 @@ class PaymentsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         val txtNumber: TextView = nav_view.getHeaderView(0).findViewById(R.id.phone_number)
 
         val phoneNumber = mAuth.currentUser!!.phoneNumber!!
-        val num = "${phoneNumber.subSequence(0, 4)} ${phoneNumber.subSequence(4, phoneNumber.length)}"
+        val num = "${phoneNumber.subSequence(0, 4)} ${phoneNumber.subSequence(4, 7)}" +
+                " ${phoneNumber.subSequence(7, phoneNumber.length)}"
         txtNumber.text = num
 
         val userDBRef = mDatabase.getReference(FirebaseUtil.USERS_REF)

@@ -173,4 +173,5 @@
     <string name="cash_on_delivery">Cash on delivery</string>
     <string name="mpesa">mPesa</string>
     <string name="avatar_photo">avatar photo</string>
+    <string name="cancel_order">Cancel order</string>
 </resources>

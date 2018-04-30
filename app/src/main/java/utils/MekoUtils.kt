@@ -3,10 +3,7 @@ package utils
 import android.content.Context
 import android.content.SharedPreferences
 import android.content.res.Resources
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Point
+import android.graphics.*
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.location.Address
@@ -25,9 +22,14 @@ import android.view.animation.OvershootInterpolator
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.widget.Toast
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageMetadata
 import com.loqoursys.meko.R
@@ -35,10 +37,12 @@ import com.loqoursys.meko.data.FoodItem
 import com.loqoursys.meko.data.MekoOrder
 import com.loqoursys.meko.data.OrderStatus
 import com.loqoursys.meko.listener.ClickListener
+import com.loqoursys.meko.listener.ThumbnailListener
 import com.loqoursys.meko.qr.ImageType
 import com.loqoursys.meko.qr.QRGContents
 import com.loqoursys.meko.qr.QRGEncoder
 import com.loqoursys.meko.qr.QRGSaver
+import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.spinner_item.view.*
 import java.util.*
 
@@ -403,9 +407,28 @@ class FirebaseUtil {
         const val PROFILE_PHOTO_REF = "Images/Profile photos"
         const val USERS_REF = "Meko users"
         const val ORDERS_REF = "Meko orders"
+        const val THUMBNAILS_REF = "Thumbnails"
         const val DELIVERY_FEE_KEY = "delivery_fee"
         const val SAVED_LOCATIONS = "Saved Locations"
     }
+}
+
+fun getThumbnail(photoUrl: String, listener: ThumbnailListener) {
+    mDatabase.getReference(FirebaseUtil.THUMBNAILS_REF)
+            .orderByChild("path")
+            .equalTo(photoUrl)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onCancelled(p0: DatabaseError?) {
+
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot?) {
+                    if (snapshot != null) {
+                        val url = snapshot.child("thumbnail").getValue(String::class.java)
+                        listener.thumbnail(url)
+                    }
+                }
+            })
 }
 
 class MekoFolders {
@@ -413,6 +436,7 @@ class MekoFolders {
         var RECEIPTS_FOLDER: String = "${Environment.getExternalStorageDirectory().absolutePath}/Meko/Receipts"
     }
 }
+
 
 class SpinnerAdapter(context: Context, objects: Array<String>) : ArrayAdapter<String>(context, R.layout.spinner_item, objects), ThemedSpinnerAdapter {
     private val mDropDownHelper: ThemedSpinnerAdapter.Helper = ThemedSpinnerAdapter.Helper(context)
@@ -484,6 +508,8 @@ class Receipts {
 var deliveryFee: Float = 0F
 val mekoCart = ArrayList<FoodItem>()
 val mekoOrders = ArrayList<MekoOrder>()
+val mekoFoods = ArrayList<FoodItem>()
+
 var selectedLocation: Location? = null
 
 //Conversions
@@ -500,3 +526,42 @@ fun getOrderTotal(orderItems: ArrayList<FoodItem>): Float {
     }
     return total
 }
+
+fun CircleImageView.loadURL(context: Context, URL: String) {
+    Glide.with(context).load(URL)
+            .apply(RequestOptions().centerCrop())
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .into(this)
+}
+
+fun getMealPhoto(context: Context, hr: Int = 0): Bitmap =
+        when (hr) {
+            0, 1, 2, 3, 4, 5 -> {
+                BitmapFactory.decodeResource(context.resources, R.drawable.meko_food)
+            }
+            6, 7, 8, 9, 10, 11 -> {
+                BitmapFactory.decodeResource(context.resources, R.drawable.breakfast)
+            }
+            12, 13, 14, 15, 16, 17 -> {
+                BitmapFactory.decodeResource(context.resources, R.drawable.lunch_photo)
+            }
+            else -> {
+                BitmapFactory.decodeResource(context.resources, R.drawable.dinner_photo)
+            }
+        }
+
+fun getMealTag(hr: Int): String =
+        when (hr) {
+            0, 1, 2, 3, 4, 5 -> {
+                "Every time is meko time"
+            }
+            6, 7, 8, 9, 10, 11 -> {
+                "Have a fruitful day"
+            }
+            12, 13, 14, 15, 16, 17 -> {
+                "Enjoy that delicious meal"
+            }
+            else -> {
+                "Whats for dinner? beef?"
+            }
+        }
