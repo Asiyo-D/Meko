@@ -77,7 +77,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleApiClient.Con
         val subtitle = intent.getStringExtra("subtitle")
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
+        supportActionBar?.setDisplayShowTitleEnabled(true)
         val drawable = ContextCompat.getDrawable(context, R.drawable.ic_clear_black_24dp)
         drawable?.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP)
 

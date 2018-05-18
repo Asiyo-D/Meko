@@ -76,6 +76,7 @@ class MekoImageView : ImageView {
 
         interface Callback {
             fun onFailure(message: String)
+            fun onComplete()
         }
 
         override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?,
@@ -88,6 +89,7 @@ class MekoImageView : ImageView {
         override fun onResourceReady(resource: Drawable, model: Any, target: Target<Drawable>,
                                      dataSource: DataSource, isFirstResource: Boolean): Boolean {
 //            target.onResourceReady(resource,
+            callback?.onComplete()
 //                    DrawableCrossFadeTransition(resource,1000,isFirstResource))
             return false
         }

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/bar_height"
+    android:orientation="vertical"
+    tools:background="#AA0000">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="@dimen/bar_margin_left">
+
+        <ImageView
+            android:id="@+id/bar_app_icon_background"
+            android:layout_width="@dimen/bar_icon_background_size"
+            android:layout_height="@dimen/bar_icon_background_size"
+            android:layout_gravity="center"
+            android:scaleType="fitCenter"
+            android:visibility="invisible"
+            tools:ignore="ContentDescription"
+            tools:src="@android:color/transparent" />
+
+        <ImageView
+            android:id="@+id/bar_app_icon"
+            android:layout_width="@dimen/bar_icon_size"
+            android:layout_height="@dimen/bar_icon_size"
+            android:layout_gravity="center"
+            android:scaleType="fitCenter"
+            android:visibility="invisible"
+            tools:ignore="ContentDescription" />
+
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:drawablePadding="@dimen/space_2x"
+        android:drawableStart="@drawable/ic_restaurant_menu_black_24dp"
+        android:gravity="center"
+        android:text="@string/meko"
+        android:textColor="#757575"
+        android:textSize="17sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|end"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            android:id="@+id/bar_actions_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+
+        <android.support.v7.widget.ActionMenuView
+            android:id="@+id/bar_actions_menu_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical" />
+
+    </LinearLayout>
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/bar_menu_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="@dimen/bar_icon_margin_left"
+        android:background="?android:selectableItemBackgroundBorderless"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/awsb_ic_menu_white_24dp" />
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/bar_back_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="9dp"
+        android:padding="6dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/awsb_ic_arrow_back_white_24dp" />
+
+</FrameLayout>

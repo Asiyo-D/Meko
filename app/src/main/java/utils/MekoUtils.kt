@@ -12,16 +12,17 @@ import android.os.Environment
 import android.support.constraint.ConstraintLayout
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
+import android.support.v7.view.menu.ActionMenuItemView
+import android.support.v7.widget.ActionMenuView
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.ThemedSpinnerAdapter
+import android.support.v7.widget.Toolbar
 import android.support.v7.widget.helper.ItemTouchHelper
 import android.util.Log
 import android.view.*
 import android.view.animation.AnimationUtils
 import android.view.animation.OvershootInterpolator
-import android.widget.ArrayAdapter
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
@@ -33,6 +34,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageMetadata
 import com.loqoursys.meko.R
+import com.loqoursys.meko.data.AreasServed
 import com.loqoursys.meko.data.FoodItem
 import com.loqoursys.meko.data.MekoOrder
 import com.loqoursys.meko.data.OrderStatus
@@ -406,10 +408,18 @@ class FirebaseUtil {
     companion object {
         const val PROFILE_PHOTO_REF = "Images/Profile photos"
         const val USERS_REF = "Meko users"
+        const val FOOD_REF = "Meko foods"
         const val ORDERS_REF = "Meko orders"
         const val THUMBNAILS_REF = "Thumbnails"
         const val DELIVERY_FEE_KEY = "delivery_fee"
         const val SAVED_LOCATIONS = "Saved Locations"
+
+    }
+
+    fun getFoodSearchIndex(): String {
+        val cal = Calendar.getInstance()
+        val date = DateTimeTemplate.format(cal, "%yy%%mm%%dd%")
+        return "${date}_${AreasServed.NYERI}"
     }
 }
 
@@ -534,19 +544,26 @@ fun CircleImageView.loadURL(context: Context, URL: String) {
             .into(this)
 }
 
-fun getMealPhoto(context: Context, hr: Int = 0): Bitmap =
+fun ImageView.loadFromResources(context: Context, resId: Int) {
+    Glide.with(context).load(resId)
+            .apply(RequestOptions().centerCrop())
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .into(this)
+}
+
+fun getMealPhotoID(hr: Int = 0): Int =
         when (hr) {
             0, 1, 2, 3, 4, 5 -> {
-                BitmapFactory.decodeResource(context.resources, R.drawable.meko_food)
+                R.drawable.meko_food
             }
             6, 7, 8, 9, 10, 11 -> {
-                BitmapFactory.decodeResource(context.resources, R.drawable.breakfast)
+                R.drawable.breakfast
             }
             12, 13, 14, 15, 16, 17 -> {
-                BitmapFactory.decodeResource(context.resources, R.drawable.lunch_photo)
+                R.drawable.lunch_photo
             }
             else -> {
-                BitmapFactory.decodeResource(context.resources, R.drawable.dinner_photo)
+                R.drawable.dinner_photo
             }
         }
 
@@ -565,3 +582,33 @@ fun getMealTag(hr: Int): String =
                 "Whats for dinner? beef?"
             }
         }
+
+fun setToolbarTint(toolbar: Toolbar, toolbarIconColor: Int) {
+    val colorFilter = PorterDuffColorFilter(toolbarIconColor, PorterDuff.Mode.MULTIPLY)
+
+    for (i in 0 until toolbar.childCount) {
+        val v = toolbar.getChildAt(i)
+
+        if (v is ImageButton) {
+            v.drawable.colorFilter = colorFilter
+        }
+
+        if (v is ActionMenuView) {
+            for (j in 0 until v.childCount) {
+                val innerView = v.getChildAt(j)
+
+                if (innerView is ActionMenuItemView) {
+                    val drawablesCount = innerView.compoundDrawables.size
+                    for (k in 0 until drawablesCount) {
+                        if (innerView.compoundDrawables[k] != null) {
+
+                            innerView.post { innerView.compoundDrawables[k].colorFilter = colorFilter }
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+}

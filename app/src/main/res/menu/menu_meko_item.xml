@@ -15,6 +15,7 @@
         android:icon="@drawable/ic_favorite_border_white_24dp"
         android:orderInCategory="100"
         android:title="@string/add_to_favorite"
+        android:visible="false"
         app:showAsAction="ifRoom" />
 
 </menu>

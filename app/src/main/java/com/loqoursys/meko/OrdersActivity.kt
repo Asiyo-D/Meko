@@ -1,12 +1,14 @@
 package com.loqoursys.meko
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -31,6 +33,12 @@ class OrdersActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_orders)
         setSupportActionBar(toolbar)
+
+        drawer_layout.setViewScale(Gravity.START, 0.9f) //set height scale for main view (0f to 1f)
+        drawer_layout.setViewElevation(Gravity.START, 20f)//set main view elevation when drawer open (dimension)
+        drawer_layout.setViewScrimColor(Gravity.START, Color.TRANSPARENT)//set drawer overlay coloe (color)
+
+        drawer_layout.setRadius(Gravity.START, 30f)//set end container's corner radius (dimension)
 
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)

@@ -4,49 +4,120 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     android:fitsSystemWindows="true"
     tools:context="com.loqoursys.meko.MekoItemActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="280dp"
+        android:layout_height="408dp"
         android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay"
         android:visibility="visible">
 
         <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            app:contentScrim="@color/colorPrimary"
+            app:contentScrim="@color/colorWhite"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:titleEnabled="false"
-            app:toolbarId="@+id/toolbar">
+            app:titleEnabled="false">
 
-            <ImageView
+            <com.loqoursys.meko.ui.MekoImageView
                 android:id="@+id/item_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@color/colorBlackAlpha"
+                android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/paleo" />
+                android:visibility="invisible"
+                app:layout_collapseMode="parallax" />
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="match_parent"
                 android:layout_gravity="top"
+                android:alpha="0.5"
                 android:background="@drawable/scrim"
-                android:fitsSystemWindows="false" />
+                android:fitsSystemWindows="true"
+                android:visibility="invisible" />
+
+            <View
+                android:id="@+id/scrim"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom"
+                android:alpha="0.25"
+                android:background="#66000000"
+                android:fitsSystemWindows="true"
+                android:rotation="180"
+                android:visibility="invisible" />
+
+            <LinearLayout
+                android:id="@+id/item_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="@dimen/space_4x"
+                android:orientation="vertical"
+                android:padding="@dimen/space_4x"
+                android:paddingBottom="@dimen/space_2x"
+                android:visibility="invisible">
+
+                <TextView
+                    android:id="@+id/txt_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/ubuntu_medium"
+                    android:maxLines="1"
+                    android:text=""
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp" />
+
+                <View
+                    android:layout_width="96dp"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="@dimen/space_1x"
+                    android:background="@color/colorWhite" />
+
+                <TextView
+                    android:id="@+id/txt_servings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_1x"
+                    android:fontFamily="@font/ubuntu_medium"
+                    android:text=""
+                    android:textColor="@android:color/white"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/txt_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_2x"
+                    android:background="@drawable/light_ellipse"
+                    android:fontFamily="@font/ubuntu_bold"
+                    android:text=""
+                    android:textColor="@android:color/white"
+                    android:textSize="17sp" />
+
+            </LinearLayout>
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
+                android:fitsSystemWindows="false"
+                android:theme="@style/AppTheme.AppBarOverlayDark"
+                android:visibility="invisible"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
+
+
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_meko_item" />
@@ -57,6 +128,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
         android:tint="@android:color/white"
+        android:visibility="invisible"
         app:backgroundTint="@android:color/black"
         app:fabSize="normal"
         app:layout_anchor="@id/app_bar"

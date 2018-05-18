@@ -7,9 +7,11 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
+import android.view.View
 import com.loqoursys.meko.data.FoodItem
 import kotlinx.android.synthetic.main.activity_cart.*
 import kotlinx.android.synthetic.main.content_cart.*
+import kotlinx.android.synthetic.main.content_empty_cart.*
 import utils.*
 import java.util.*
 
@@ -35,22 +37,6 @@ class CartActivity : AppCompatActivity() {
         val date = DateTimeTemplate.format(cal, "%DD%, %MMM% %dd%")
         txt_date.text = date
 
-        mekoCart.add(FoodItem(item_name = "Chapati Beans", servings = 1, price = 120F))
-        mekoCart.add(FoodItem(item_name = "Chips & Fish", servings = 2, price = 1020F))
-        mekoCart.add(FoodItem(item_name = "Coca Cola 500ML", servings = 6, price = 420F))
-        mekoCart.add(FoodItem(item_name = "Ugali Nyama", servings = 2, price = 350F))
-
-//        mekoCart.add(FoodItem(item_name = "Chapati Beans", servings = 1, price = 150F))
-//        mekoCart.add(FoodItem(item_name = "Chips & Fish", servings = 2, price = 500F))
-//        mekoCart.add(FoodItem(item_name = "Coca Cola 500ML", servings = 6, price = 420F))
-//        mekoCart.add(FoodItem(item_name = "Ugali Nyama", servings = 2, price = 100F))
-//
-//        mekoCart.add(FoodItem(item_name = "Chapati Beans", servings = 1, price = 150F))
-//        mekoCart.add(FoodItem(item_name = "Chips & Fish", servings = 2, price = 500F))
-//        mekoCart.add(FoodItem(item_name = "Coca Cola 500ML", servings = 6, price = 420F))
-//        mekoCart.add(FoodItem(item_name = "Ugali Nyama", servings = 2, price = 100F))
-
-
         adapter = CartAdapter(this, mekoCart)
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
@@ -75,9 +61,19 @@ class CartActivity : AppCompatActivity() {
         }
 
         calculateTotals()
+        btn_back.setOnClickListener {
+            finish()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        toggleCartView()
     }
 
     private fun calculateTotals() {
+        toggleCartView()
+
         var subtotal = 0F
         mekoCart.forEach { subtotal += it.price }
 
@@ -108,6 +104,16 @@ class CartActivity : AppCompatActivity() {
             adapter.addItem(tempItem!!.first, tempItem!!.second)
 
             calculateTotals()
+        }
+    }
+
+    private fun toggleCartView() {
+        if (mekoCart.isEmpty()) {
+            view_empty_cart.visibility = View.VISIBLE
+            card_proceed.visibility = View.INVISIBLE
+        } else {
+            view_empty_cart.visibility = View.INVISIBLE
+            card_proceed.visibility = View.VISIBLE
         }
     }
 

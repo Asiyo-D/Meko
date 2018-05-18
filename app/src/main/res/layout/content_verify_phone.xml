@@ -1,109 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/view_phone"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.loqoursys.meko.VerifyPhoneActivity"
     tools:showIn="@layout/activity_verify_phone">
 
-    <LinearLayout
-        android:id="@+id/linear_verify"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
-        <ImageView
+        <TextView
+            android:id="@+id/verify_title"
+            style="@style/SubTitleStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_2x"
+            android:layout_marginTop="@dimen/space_2x"
+            android:text="@string/title_activity_verify_phone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/linear_phone"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_marginTop="@dimen/space_3x"
-            android:contentDescription="@string/app_icon"
-            android:src="@drawable/app_icon" />
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/space_2x"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/verify_title">
+
+            <ImageView
+                android:id="@+id/img_flag"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="@dimen/space_2x"
+                android:contentDescription="@string/country_code"
+                android:src="@drawable/country_icon" />
+
+            <TextView
+                android:id="@+id/txt_cc"
+                style="@style/TitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_2x"
+                android:text="@string/country_code"
+                android:textColor="@android:color/black" />
+
+            <EditText
+                android:id="@+id/txt_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/space_2x"
+                android:layout_marginStart="@dimen/space_2x"
+                android:hint="@string/phone_number"
+                android:imeOptions="actionDone"
+                android:inputType="number" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/phone_helper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/space_3x"
+            android:text="@string/number_helper"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linear_phone" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/space_3x"
-            android:layout_marginTop="@dimen/space_3x"
-            android:text="@string/tag"
-            android:textColor="@android:color/white"
-            android:textSize="24sp" />
-    </LinearLayout>
+            android:layout_marginTop="@dimen/space_6x"
+            android:gravity="center"
+            android:paddingEnd="@dimen/space_4x"
+            android:paddingStart="@dimen/space_4x"
+            android:text="@string/verify_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/phone_helper" />
 
-    <TextView
-        android:id="@+id/verify_title"
-        style="@style/SubTitleStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/space_2x"
-        android:layout_marginTop="@dimen/space_2x"
-        android:text="@string/title_activity_verify_phone"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linear_verify" />
-
-    <LinearLayout
-        android:id="@+id/linear_phone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingTop="@dimen/space_2x"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/verify_title">
-
-        <ImageView
-            android:id="@+id/img_flag"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="@dimen/space_2x"
-            android:contentDescription="@string/country_code"
-            android:src="@drawable/country_icon" />
-
-        <TextView
-            android:id="@+id/txt_cc"
-            style="@style/TitleStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/space_2x"
-            android:text="@string/country_code"
-            android:textColor="@android:color/black" />
-
-        <EditText
-            android:id="@+id/txt_number"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/space_2x"
-            android:layout_marginStart="@dimen/space_2x"
-            android:hint="@string/phone_number"
-            android:imeOptions="actionDone"
-            android:inputType="number" />
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/phone_helper"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/space_3x"
-        android:text="@string/number_helper"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linear_phone" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_2x"
-        android:gravity="center"
-        android:text="@string/verify_text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/phone_helper" />
-
-</android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
+</android.support.v4.widget.NestedScrollView>

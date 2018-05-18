@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/space_3x"
+    android:paddingEnd="@dimen/space_2x"
+    android:paddingStart="@dimen/space_2x"
+    android:paddingTop="@dimen/space_3x">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/amount_per_serving"
+            android:textColor="@android:color/black"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/txt_item_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/ubuntu_medium"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@android:color/black"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/space_2x"
+        android:gravity="center"
+        android:paddingBottom="@dimen/space_1x"
+        android:paddingTop="@dimen/space_1x">
+
+        <ImageButton
+            android:id="@+id/btn_remove"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_weight="0"
+            android:background="?android:selectableItemBackgroundBorderless"
+            android:contentDescription="@string/remove_button"
+            android:src="@drawable/ic_remove_black_24dp" />
+
+        <TextView
+            android:id="@+id/txt_item_num"
+            android:layout_width="?android:listPreferredItemHeightSmall"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/space_3x"
+            android:layout_marginStart="@dimen/space_3x"
+            android:layout_weight="0"
+            android:fontFamily="@font/ubuntu_medium"
+            android:gravity="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="21sp" />
+
+        <ImageButton
+            android:id="@+id/btn_add"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_weight="0"
+            android:background="?android:selectableItemBackgroundBorderless"
+            android:contentDescription="@string/add"
+            android:src="@drawable/ic_add_black_24dp" />
+    </LinearLayout>
+</LinearLayout>

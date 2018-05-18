@@ -14,3 +14,11 @@ enum class PaymentStatus {
 enum class ReviewStatus {
     PENDING, REVIEWED
 }
+
+enum class AreasServed {
+    //    Active locations
+    NYERI
+//    Future locations
+//    , NAIROBI, NAKURU
+//    , KISUMU, ELDORET, MOMBASA
+}

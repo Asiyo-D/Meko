@@ -1,14 +1,12 @@
 package com.loqoursys.meko
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import utils.*
-import java.util.*
 
 class SplashActivity : AppCompatActivity() {
 
@@ -17,9 +15,8 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+//        setContentView(R.layout.activity_splash)
         handler = Handler()
-        window.statusBarColor = Color.WHITE
 
         mRemoteConfig = FirebaseRemoteConfig.getInstance()
         val configSettings = FirebaseRemoteConfigSettings.Builder()
@@ -63,16 +60,13 @@ class SplashActivity : AppCompatActivity() {
 
         Preferences.loadPreferences(this)
 
-        val hr = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
-        getMealPhoto(this, hr)
-
         handler.postDelayed({
-            //            when {
-//                mAuth.currentUser == null -> startActivity(Intent(this, WelcomeActivity::class.java))
-//                Preferences.isNewUser() -> startActivity(Intent(this, AccountSetupActivity::class.java))
-//                else -> startActivity(Intent(this, MainActivity::class.java))
-//            }
-            startActivity(Intent(this, MainActivity::class.java))
+            when {
+                mAuth.currentUser == null -> startActivity(Intent(this, WelcomeActivity::class.java))
+                Preferences.isNewUser() -> startActivity(Intent(this, AccountSetupActivity::class.java))
+                else -> startActivity(Intent(this, MainActivity::class.java))
+            }
+//            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }, SPLASH_DELAY)
     }
@@ -80,7 +74,7 @@ class SplashActivity : AppCompatActivity() {
     override fun onBackPressed() {}
 
     companion object {
-        const val SPLASH_DELAY = 4000L
+        const val SPLASH_DELAY = 3000L
 
     }
 

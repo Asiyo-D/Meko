@@ -15,14 +15,15 @@
         <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:contentScrim="@color/colorPrimary"
+            app:contentScrim="@color/colorWhite"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:titleEnabled="false">
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="?android:attr/actionBarSize"
-                android:background="@color/colorWhite">
+                android:background="@color/primaryLighter">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/avatar"
@@ -83,7 +84,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
-                android:background="@color/colorPrimary"
+                app:layout_collapseMode="pin"
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
         </android.support.design.widget.CollapsingToolbarLayout>
 

@@ -174,4 +174,19 @@
     <string name="mpesa">mPesa</string>
     <string name="avatar_photo">avatar photo</string>
     <string name="cancel_order">Cancel order</string>
+    <string name="action_item">Action item</string>
+    <string name="verifying">Verifying</string>
+    <string name="verifying_text">Waiting to automatically detect an SMS sent to</string>
+    <string name="enter_6_digit_code">Enter 6-digit code</string>
+    <string name="resend_code">Resend code</string>
+    <string name="food">Food</string>
+    <string name="drinks">Drinks</string>
+    <string name="back_to_meko">Back to meko</string>
+    <string name="oops">Oops</string>
+    <string name="empty_text">Looks like your cart is empty</string>
+    <string name="notifications">Notifications</string>
+    <string name="add">add button</string>
+    <string name="remove_button">remove button</string>
+    <string name="amount_per_serving">Amount per serving:</string>
+    <string name="title_activity_search">Search</string>
 </resources>
